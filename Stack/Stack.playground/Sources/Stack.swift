@@ -5,14 +5,15 @@ public struct Stack<Element> {
     
     public init() {}
     
-    public init(array elements: [Element]) {
+    public init(_ elements: [Element]) {
         storage = elements
     }
     
-    public mutating func push(element: Element) {
+    public mutating func push(_ element: Element) {
         storage.append(element)
     }
     
+    @discardableResult
     public mutating func pop() -> Element? {
         storage.popLast()
     }
@@ -29,5 +30,11 @@ public struct Stack<Element> {
 extension Stack: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Element...) {
         storage = elements
+    }
+}
+
+extension Stack: CustomStringConvertible {
+    public var description: String {
+        return "\(storage.map { "\($0)"}.reversed().joined(separator: "\n"))"
     }
 }
