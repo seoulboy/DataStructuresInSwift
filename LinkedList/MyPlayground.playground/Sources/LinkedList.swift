@@ -1,5 +1,3 @@
-import Foundation
-
 public struct LinkedList<Value> {
     
     public var head: Node<Value>?

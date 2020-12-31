@@ -1,5 +1,3 @@
-import Foundation
-
 public class Node<Value> {
     
     public var value: Value
