@@ -1,18 +1,23 @@
+import Foundation
+
 public struct LinkedList<Value> {
-    
     public var head: Node<Value>?
     public var tail: Node<Value>?
     
-    public init() { }
+    public init() {}
 
-    public mutating func push (_ value: Value) {
+    public var isEmpty: Bool {
+        head == nil
+    }
+    
+    public mutating func push(_ value: Value) {
         head = Node(value: value, next: head)
         if tail == nil {
             tail = head
         }
     }
     
-    public mutating func append (_ value: Value) {
+    public mutating func append(_ value: Value) {
         guard !isEmpty else {
             push(value)
             return
@@ -23,11 +28,10 @@ public struct LinkedList<Value> {
     }
     
     public func node(at index: Int) -> Node<Value>? {
-        
         var currentNode = head
         var currentIndex = 0
         
-        while currentNode != nil && currentIndex < index {
+        while currentIndex < index, currentNode != nil {
             currentNode = currentNode!.next
             currentIndex += 1
         }
@@ -35,27 +39,21 @@ public struct LinkedList<Value> {
         return currentNode
     }
     
-    @discardableResult
     public mutating func insert(_ value: Value, after node: Node<Value>) -> Node<Value> {
-        guard tail !== node else {
+        guard node !== tail else {
             append(value)
             return tail!
         }
         
-        node.next = Node(value: value)
+        node.next = Node(value: value, next: node.next)
         return node.next!
-    }
-    
-    public var isEmpty: Bool {
-        head == nil
     }
 }
 
 extension LinkedList: CustomStringConvertible {
-    
     public var description: String {
         guard let head = head else {
-            return "This is an empty linked list"
+            return "this is empty"
         }
         
         return String(describing: head)
