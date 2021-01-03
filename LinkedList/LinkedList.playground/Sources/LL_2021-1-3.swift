@@ -17,6 +17,16 @@ public struct LinkedList<Value> {
         }
     }
     
+    public mutating func pop() -> Value? {
+        defer {
+            head = head?.next
+            if isEmpty {
+                tail = nil
+            }
+        }
+        return head?.value
+    }
+    
     public mutating func append(_ value: Value) {
         guard !isEmpty else {
             push(value)
