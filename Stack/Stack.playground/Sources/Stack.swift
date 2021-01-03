@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Stack<Element> {
-    public var storage = [Element]()
+    var storage = [Element]()
     
     public init() {}
     
