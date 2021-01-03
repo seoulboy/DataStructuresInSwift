@@ -27,6 +27,38 @@ public struct LinkedList<Value> {
         return head?.value
     }
     
+    public mutating func removeLast() -> Value? {
+        guard let head = head else {
+            return nil
+        }
+        
+        guard head.next != nil else {
+            return pop()
+        }
+        
+        var prev = head
+        var current = head
+        
+        while let next = current.next {
+            prev = current
+            current = next
+        }
+        
+        prev.next = nil
+        tail = prev
+        return current.value
+    }
+    
+    public mutating func remove(after node: Node<Value>) -> Value? {
+        defer {
+            if node === tail {
+                tail = node.next
+            }
+            node.next = node.next?.next
+        }
+        return node.next?.value
+    }
+    
     public mutating func append(_ value: Value) {
         guard !isEmpty else {
             push(value)
