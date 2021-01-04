@@ -32,14 +32,16 @@ example(of: "pop operation in stack") {
 }
 
 example(of: "initializing a stack from an array literal") {
-  var stack: Stack = [1.0, 2.0, 3.0, 4.0]
-  print(stack)
-  stack.pop()
+    var stack: Stack = [1.0, 2.0, 3.0, 4.0]
+    print(stack)
+    stack.pop()
+    print(stack)
 }
 
 example(of: "initializing a stack from an array") {
-  let array = ["A", "B", "C", "D"]
-  var stack = Stack(array)
-  print(stack)
-  stack.pop()
+    let array = ["A", "B", "C", "D"]
+    var stack = Stack(array)
+    print(stack)
+    stack.pop()
+    print(stack)
 }
